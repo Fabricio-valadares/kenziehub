@@ -46,7 +46,7 @@ const Home = () => {
                 </Paper>
                 <Paper elevation={1} item className={classes.blockData}>
                     <Typography variant="h6">Tecnologias de estudo:</Typography>
-                    <TecDev tec={tec} />
+                    <TecDev tec={tec} setTec={setTec} />
                 </Paper>
             </Grid>
             <Grid item xs={12} sm={12} md={5} className={classes.newTecs}>

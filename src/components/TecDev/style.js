@@ -5,5 +5,9 @@ export const useStyles = makeStyles((theme) => ({
         display: "flex",
         justifyContent: "space-between",
         margin: "20px 0"
+    },
+    icons: {
+        display: "flex",
+        cursor: "pointer"
     }
 }))
