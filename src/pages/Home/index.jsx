@@ -4,13 +4,14 @@ import { Grid, Paper, Typography, Avatar, Accordion, AccordionSummary, Accordion
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { useStyles } from "./style"
 import NewTecs from "../../components/NewTecs"
+import TecDev from "../../components/TecDev"
 
 const Home = () => {
 
     const classes = useStyles()
 
     const [user, setUser] = useState({})
-    const [tec, setTec] = useState([{title: "React", status: "Avançado"}, {title: "JavaScript", status: "Iniciante"}])
+    const [tec, setTec] = useState([])
 
     const [token, setToken] = useState(() => {
         const localToken = localStorage.getItem("token") || ""
@@ -22,13 +23,15 @@ const Home = () => {
             headers: { Authorization: `Bearer ${token}` }
         }).then(response => {
             setUser(response.data)
+            setTec(response.data.techs)
         }).catch(error => console.log(error))
+        
     }, [])
 
     return (
         <Grid container xs={12} sm={12} md={12} className={classes.primary}>
             <Grid className={classes.container} item xs={12} sm={12} md={7}>
-                <Paper elevation={3} item className={classes.blockOne}>
+                <Paper elevation={1} item className={classes.blockOne}>
                     <Grid>
                         <Avatar className={classes.img}></Avatar>
                     </Grid>
@@ -37,35 +40,22 @@ const Home = () => {
                         <Typography variant="h6">Modulo do curso: {user.course_module}</Typography>
                     </Grid>
                 </Paper>
-                <Paper elevation={3} item className={classes.blockData}>
+                <Paper elevation={1} item className={classes.blockData}>
                     <Typography variant="h6">Biografia :</Typography>
                     <Typography>{user.bio}</Typography>
                 </Paper>
-                <Paper elevation={3} item className={classes.blockData}>
+                <Paper elevation={1} item className={classes.blockData}>
                     <Typography variant="h6">Tecnologias de estudo:</Typography>
-                    {tec.map((ele, index) => (
-                        <Grid key={index} className={classes.tecs}>
-                            <div>
-                                <Typography>{ele.title}</Typography>
-                            </div>
-                            <div>
-                                <Typography>{ele.status}</Typography>
-                            </div>
-                        </Grid>
-                    ))}
+                    <TecDev tec={tec} />
                 </Paper>
             </Grid>
             <Grid item xs={12} sm={12} md={5} className={classes.newTecs}>
             <Accordion>
-                <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-                >
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                     <Typography className={classes.heading}>Adcionar novas tecnologias</Typography>
                 </AccordionSummary>
                     <AccordionDetails>
-                        <NewTecs />
+                        <NewTecs tecs={tec} listTecs={setTec} />
                     </AccordionDetails>
                 </Accordion>
             </Grid>
