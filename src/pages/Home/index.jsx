@@ -28,7 +28,18 @@ const Home = () => {
         
     }, [])
 
+    useEffect(() => {
+        api.get("/profile", {
+            headers: { Authorization: `Bearer ${token}` }
+        }).then(response => {
+            setUser(response.data)
+            setTec(response.data.techs)
+        }).catch(error => console.log(error))
+        
+    }, [tec])
+
     return (
+
         <Grid container xs={12} sm={12} md={12} className={classes.primary}>
             <Grid className={classes.container} item xs={12} sm={12} md={7}>
                 <Paper elevation={1} item className={classes.blockOne}>

@@ -3,6 +3,7 @@ import { Grid, Typography } from "@material-ui/core"
 import { useStyles } from "./style"
 import { FaTrashAlt, FaEdit } from "react-icons/fa"
 import api from "../../services/api"
+import ModalCreate from "../../components/modal"
 
 
 const TecDev = ({ tec, setTec }) => {
@@ -24,7 +25,6 @@ const TecDev = ({ tec, setTec }) => {
             .catch(error => console.log(error))
     }
 
-
     return (
         <>
             {tec.map((ele, index) => (
@@ -35,8 +35,8 @@ const TecDev = ({ tec, setTec }) => {
                             <div>
                                 <div className={classes.icons}>
                                     <Typography>{ele.status}</Typography>
-                                    <FaTrashAlt onClick={() => handleExit(ele.id)} size={20}/>
-                                    <FaEdit size={20}/>
+                                    <FaTrashAlt className={classes.cursor} onClick={() => handleExit(ele.id)} size={20}/>
+                                    <ModalCreate tec={tec} setTec={setTec} dataTecs={ele} />
                                 </div>
                             </div>
                         </Grid>

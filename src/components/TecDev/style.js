@@ -8,6 +8,8 @@ export const useStyles = makeStyles((theme) => ({
     },
     icons: {
         display: "flex",
+    },
+    cursor: {
         cursor: "pointer"
-    }
+    },
 }))
