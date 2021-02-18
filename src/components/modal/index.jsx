@@ -10,6 +10,8 @@ import { yupResolver } from "@hookform/resolvers/yup"
 
 const ModalCreate = ({ dataTecs, setTec, tec }) => {
   const classes = useStyles();
+  
+  const [textSuccess, setTextSuccess] = useState(false)
   const [open, setOpen] = useState(false);
   const [token, setToken] = useState(() => {
       const tokenUpdate = localStorage.getItem("token") || ""
@@ -18,6 +20,7 @@ const ModalCreate = ({ dataTecs, setTec, tec }) => {
 
   const handleOpen = () => {
     setOpen(true);
+    setTextSuccess(false)
   };
 
   const handleClose = () => {
@@ -40,6 +43,8 @@ const ModalCreate = ({ dataTecs, setTec, tec }) => {
        
          setTec(tec)
 
+         setTextSuccess(true)
+
         })  
       .catch(error => console.log(error))
   }
@@ -49,11 +54,18 @@ const ModalCreate = ({ dataTecs, setTec, tec }) => {
       <FaEdit type="button" onClick={handleOpen} className={classes.cursor} size={20} />
         
       <Modal open={open}  onClose={handleClose} >
-      <form onClick={handleSubmit(updateTec)} className={classes.paper}>
+      {!textSuccess ? (
+        <form onClick={handleSubmit(updateTec)} className={classes.paper}>
             <Typography>{`Alterar o nivel da tecnologia: ${dataTecs.title}`}</Typography>
             <TextField name="status" inputRef={register} error={!!errors.status} helperText={errors.status?.message} variant="outlined" label="Nivel" />
             <Button type="submit" color="primary" variant="contained">Alterar</Button>
-     </form>
+     </form>) : (
+
+            <form onClick={handleSubmit(updateTec)} className={classes.paper}>
+                <h2>Alteração realizada com sucesso !</h2>
+            </form>
+        
+        )}
       </Modal>
     </div>
   );
