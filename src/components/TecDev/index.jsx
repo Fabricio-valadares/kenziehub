@@ -1,29 +1,12 @@
-import { useState } from "react"
 import { Grid, Typography } from "@material-ui/core"
 import { useStyles } from "./style"
-import { FaTrashAlt } from "react-icons/fa"
-import api from "../../services/api"
 import ModalCreate from "../../components/modal"
+import ModalCreateClose from "../../components/Close"
 
 
 const TecDev = ({ tec, setTec }) => {
 
-    const [token, setToken] = useState(() => {
-        const storageToken = localStorage.getItem("token") || ""
-        return JSON.parse(storageToken)
-    })
     const classes = useStyles()
-
-    const handleExit = (itemId) => {
-        api.delete(`/users/techs/${itemId}`, { headers: { Authorization: `Bearer ${token}` } })
-            .then(response => {
-                const result = tec.filter((ele) => ele.id !== itemId && ele)
-
-                setTec(result)
-
-            })
-            .catch(error => console.log(error))
-    }
 
     return (
         <>
@@ -36,7 +19,7 @@ const TecDev = ({ tec, setTec }) => {
                                 <div className={classes.icons}>
                                     <Typography className={classes.text} >{ele.status}</Typography>
                                     <div className={classes.iconsSpace}>
-                                        <FaTrashAlt className={classes.cursor} onClick={() => handleExit(ele.id)} size={20}/>
+                                        <ModalCreateClose className={classes.cursor} title={ele.title} elemento={ele.id} tec={tec} setTec={setTec} size={20}/>
                                         <ModalCreate tec={tec} setTec={setTec} dataTecs={ele} />
                                     </div>
                                 </div>

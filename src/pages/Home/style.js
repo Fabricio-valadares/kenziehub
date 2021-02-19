@@ -5,7 +5,11 @@ export const useStyles = makeStyles((theme) => ({
         display: "flex",
         justifyContent: "center",
         marginTop: "20px",
-        width: "70vw"
+        width: "70vw",
+    },
+    name: {
+        fontSize: "2.125em",
+        marginBottom: "10px"
     },
     formControl: {
         margin: theme.spacing(1),
@@ -18,7 +22,7 @@ export const useStyles = makeStyles((theme) => ({
     },
     primary: {
         display: "flex",
-        backgroundColor: "#eee",
+        backgroundColor: "#fafafa",
         paddingBottom: "35px"
     },
     newTecs: {
@@ -42,12 +46,19 @@ export const useStyles = makeStyles((theme) => ({
         justifyContent: "space-around",
     },
     blockOne: {
+        [theme.breakpoints.down("sm")]: {
+            flexDirection: "column",
+            alignItems: "center",
+        },
         backgroundColor: "#fafafa",
         display: "flex",
         margin: "25px 40px 0 40px",
         padding: "20px",
     },
     img: {
+        [theme.breakpoints.down("sm")]: {
+            marginBottom: "10px"
+        },
         width: theme.spacing(20),
         height: theme.spacing(20),
       },

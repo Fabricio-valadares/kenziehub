@@ -2,7 +2,6 @@ import { makeStyles } from "@material-ui/core/styles"
 
 export const useStyles = makeStyles((theme) => ({
     root: {
-        backgroundImage: "linear-gradient(#33616b, #629ca6, #8eb6b8)",
         height: "100vh",
         display: "flex",
         alignItems: "center",

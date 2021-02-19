@@ -18,6 +18,5 @@ export const useStyles = makeStyles((theme) => ({
     },
     cursor: {
         cursor: "pointer",
-        marginRight: "11px"
     },
 }))

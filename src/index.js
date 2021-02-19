@@ -6,13 +6,23 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom"
 import { CssBaseline, ThemeProvider, createMuiTheme } from "@material-ui/core"
 
+
 const theme = createMuiTheme({
   typography: {
     fontFamily: "Montserrat, sans-serif"
+  },
+  palette: {
+    background: {
+      default: "#000"
+    },
+    primary: {
+      main: "#000"
+    }
   }
 })
 
 ReactDOM.render(
+
   <React.StrictMode>
     <BrowserRouter>
       <CssBaseline />
