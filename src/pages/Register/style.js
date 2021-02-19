@@ -14,7 +14,7 @@ export const useStyles = makeStyles((theme) => ({
     },
     formItems: {
         backgroundImage: "linear-gradient(#fafafa, #eee)",
-        height: "500px",
+        height: "600px",
         borderRadius: "13px",
         minWidth: "326px",
         display: "flex",
