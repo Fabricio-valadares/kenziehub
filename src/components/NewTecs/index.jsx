@@ -1,5 +1,6 @@
 import { useState } from "react"
-import { TextField, Button } from "@material-ui/core"
+import { TextField, Button, FormControl, InputLabel, Select, MenuItem } from "@material-ui/core"
+import { Controller } from "react-hook-form"
 import { useStyles } from "./style"
 import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup"
@@ -9,6 +10,11 @@ import api from "../../services/api"
 const NewTecs = ({ tecs, listTecs }) => {
 
     const classes = useStyles()
+    const [status, setStatus] = useState(" ")
+
+    const handleChange = (event) => {
+        setStatus(event.target.value);
+    };
 
     const [token, setToken] = useState(() => {
         const localToken = localStorage.getItem("token") || ""
@@ -20,7 +26,7 @@ const NewTecs = ({ tecs, listTecs }) => {
         status: yup.string().required("Campo Obrigatório")
     })
 
-    const { register, handleSubmit, errors, reset } = useForm({
+    const { register, handleSubmit, errors, reset, control } = useForm({
         resolver: yupResolver(schema)
     })
 
@@ -38,7 +44,24 @@ const NewTecs = ({ tecs, listTecs }) => {
     return (
         <form className={classes.form} onClick={handleSubmit(handleFormData)}>
             <TextField name="title" inputRef={register} error={!!errors.title} helperText={errors.title?.message} variant="outlined" label="Titulo"/>
-            <TextField name="status" inputRef={register} error={!!errors.status} helperText={errors.status?.message} variant="outlined" label="Status" />
+            
+            <FormControl variant="outlined" className={classes.formControl}>
+                <InputLabel>Status</InputLabel>
+                    <Controller 
+                        error={!!errors.status}
+                        helperText={errors.status?.message}
+                        name="status"
+                        defaultValue=""
+                        control={control}
+                        as={
+                            <Select label="Status" value={status} onChange={handleChange} >
+                                <MenuItem value={"Iniciante"}>Iniciante</MenuItem>
+                                <MenuItem value={"Intermediário"}>Intermediário</MenuItem>
+                                <MenuItem value={"Avançado"}>Avançado</MenuItem>
+                            </Select>
+                        }
+                    ></Controller>
+            </FormControl>
             <Button type="submit" variant="contained" color="primary">Adcionar</Button>
         </form>
     )

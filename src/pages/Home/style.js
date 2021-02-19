@@ -5,25 +5,31 @@ export const useStyles = makeStyles((theme) => ({
         display: "flex",
         justifyContent: "center",
         marginTop: "20px",
-        height: "100vh",
         width: "70vw"
     },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+    },
     blockData: {
-        backgroundColor: "yellow",
-        maxWidth: "51vw",
-        minWidth: "51vw",
+        backgroundColor: "#fff",
+        margin: "25px 40px 0 40px",
         padding: "20px",
     },
     primary: {
-        display: "flex"
+        display: "flex",
+        backgroundColor: "#eee",
+        paddingBottom: "35px"
     },
     newTecs: {
-        padding: "11px 42px 0 0"
+        padding: "25px 40px 0 40px"
     },
     data: {
         display: "flex",
         flexDirection: "column",
-        justifyContent: "space-around",
+        justifyContent: "center",
+        width: "440px",
+        textAlign: "center"
     },
     tecs: {
         display: "flex",
@@ -33,16 +39,13 @@ export const useStyles = makeStyles((theme) => ({
     container: {
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
         justifyContent: "space-around",
-        height: "80vh"
     },
     blockOne: {
-        backgroundColor: "yellow",
+        backgroundColor: "#fafafa",
         display: "flex",
+        margin: "25px 40px 0 40px",
         padding: "20px",
-        maxWidth: "51vw",
-        minWidth: "51vw",
     },
     img: {
         width: theme.spacing(20),

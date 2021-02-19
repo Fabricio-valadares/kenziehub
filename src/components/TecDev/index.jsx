@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Grid, Typography } from "@material-ui/core"
 import { useStyles } from "./style"
-import { FaTrashAlt, FaEdit } from "react-icons/fa"
+import { FaTrashAlt } from "react-icons/fa"
 import api from "../../services/api"
 import ModalCreate from "../../components/modal"
 
@@ -34,9 +34,11 @@ const TecDev = ({ tec, setTec }) => {
                             </div>
                             <div>
                                 <div className={classes.icons}>
-                                    <Typography>{ele.status}</Typography>
-                                    <FaTrashAlt className={classes.cursor} onClick={() => handleExit(ele.id)} size={20}/>
-                                    <ModalCreate tec={tec} setTec={setTec} dataTecs={ele} />
+                                    <Typography className={classes.text} >{ele.status}</Typography>
+                                    <div className={classes.iconsSpace}>
+                                        <FaTrashAlt className={classes.cursor} onClick={() => handleExit(ele.id)} size={20}/>
+                                        <ModalCreate tec={tec} setTec={setTec} dataTecs={ele} />
+                                    </div>
                                 </div>
                             </div>
                         </Grid>

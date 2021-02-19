@@ -10,10 +10,16 @@ export const useStyles = makeStyles((theme) => ({
       padding: theme.spacing(2, 4, 3),
       top: "27vh",
       left: "27vw",
+      borderRadius: "10px",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
+      outline: "none",
       justifyContent: "space-around"
+    },
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120,
     },
     cursor: {
         cursor: "pointer"

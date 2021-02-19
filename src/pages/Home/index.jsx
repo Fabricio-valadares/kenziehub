@@ -41,14 +41,14 @@ const Home = () => {
     return (
 
         <Grid container xs={12} sm={12} md={12} className={classes.primary}>
-            <Grid className={classes.container} item xs={12} sm={12} md={7}>
+            <Grid className={classes.container} item xs={12} sm={12} md={8}>
                 <Paper elevation={1} item className={classes.blockOne}>
                     <Grid>
-                        <Avatar className={classes.img}></Avatar>
+                        <Avatar src="./assets/Rhoone.png" className={classes.img}></Avatar>
                     </Grid>
                     <Grid className={classes.data}>
-                        <Typography variant="h6">Nome: {user.name}</Typography>
-                        <Typography variant="h6">Modulo do curso: {user.course_module}</Typography>
+                        <Typography variant="h4" >{user.name}</Typography>
+                        <Typography variant="h6">{user.course_module}</Typography>
                     </Grid>
                 </Paper>
                 <Paper elevation={1} item className={classes.blockData}>
@@ -60,11 +60,11 @@ const Home = () => {
                     <TecDev tec={tec} setTec={setTec} />
                 </Paper>
             </Grid>
-            <Grid item xs={12} sm={12} md={5} className={classes.newTecs}>
-            <Accordion>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                    <Typography className={classes.heading}>Adcionar novas tecnologias</Typography>
-                </AccordionSummary>
+            <Grid item xs={12} sm={12} md={4} className={classes.newTecs}>
+                <Accordion>
+                    <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                        <Typography className={classes.heading}>Adcionar novas tecnologias</Typography>
+                    </AccordionSummary>
                     <AccordionDetails>
                         <NewTecs tecs={tec} listTecs={setTec} />
                     </AccordionDetails>

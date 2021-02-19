@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useStyles } from "./style"
-import { Modal, TextField, Typography, Button} from '@material-ui/core';
+import { Modal, FormControl, Typography, Button, InputLabel, Select, MenuItem} from '@material-ui/core';
 import { FaEdit } from "react-icons/fa"
+import { Controller } from "react-hook-form"
 import api from "../../services/api"
 import { useForm } from "react-hook-form"
 import * as yup from "yup"
@@ -11,12 +12,17 @@ import { yupResolver } from "@hookform/resolvers/yup"
 const ModalCreate = ({ dataTecs, setTec, tec }) => {
   const classes = useStyles();
   
+  const [status, setStatus] = useState()
   const [textSuccess, setTextSuccess] = useState(false)
   const [open, setOpen] = useState(false);
   const [token, setToken] = useState(() => {
       const tokenUpdate = localStorage.getItem("token") || ""
       return JSON.parse(tokenUpdate)
   })
+
+  const handleChange = (event) => {
+    setStatus(event.target.value);
+  };
 
   const handleOpen = () => {
     setOpen(true);
@@ -31,7 +37,7 @@ const ModalCreate = ({ dataTecs, setTec, tec }) => {
       status: yup.string().required("Campo obrigatório")
   })
 
-  const { register, handleSubmit, errors, reset } = useForm({
+  const { handleSubmit, errors, reset, control } = useForm({
       resolver: yupResolver(schema)
   })
 
@@ -56,8 +62,25 @@ const ModalCreate = ({ dataTecs, setTec, tec }) => {
       <Modal open={open}  onClose={handleClose} >
       {!textSuccess ? (
         <form onClick={handleSubmit(updateTec)} className={classes.paper}>
-            <Typography>{`Alterar o nivel da tecnologia: ${dataTecs.title}`}</Typography>
-            <TextField name="status" inputRef={register} error={!!errors.status} helperText={errors.status?.message} variant="outlined" label="Nivel" />
+            <Typography align="center">{`Alterar o nivel da tecnologia: ${dataTecs.title}`}</Typography>
+
+            <FormControl variant="outlined" className={classes.formControl}>
+                <InputLabel>Status</InputLabel>
+                    <Controller 
+                        error={!!errors.status}
+                        helperText={errors.status?.message}
+                        name="status"
+                        defaultValue=""
+                        control={control}
+                        as={
+                            <Select label="Status" value={status} onChange={handleChange} >
+                                <MenuItem value={"Iniciante"}>Iniciante</MenuItem>
+                                <MenuItem value={"Intermediário"}>Intermediário</MenuItem>
+                                <MenuItem value={"Avançado"}>Avançado</MenuItem>
+                            </Select>
+                        }
+                    ></Controller>
+            </FormControl>
             <Button type="submit" color="primary" variant="contained">Alterar</Button>
      </form>) : (
 

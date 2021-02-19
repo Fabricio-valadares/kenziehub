@@ -4,13 +4,21 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom"
-import { CssBaseline } from "@material-ui/core"
+import { CssBaseline, ThemeProvider, createMuiTheme } from "@material-ui/core"
+
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: "Montserrat, sans-serif"
+  }
+})
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <CssBaseline />
-      <App />
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
