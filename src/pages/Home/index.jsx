@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import api from "../../services/api"
+import { useHistory } from "react-router-dom"
 import { Grid, Paper, Typography, Avatar, Accordion, AccordionSummary, AccordionDetails } from "@material-ui/core"
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { useStyles } from "./style"
@@ -8,6 +9,8 @@ import TecDev from "../../components/TecDev"
 
 const Home = () => {
 
+    const history = useHistory()
+
     const classes = useStyles()
 
     const [user, setUser] = useState({})
@@ -15,8 +18,16 @@ const Home = () => {
 
     const [token, setToken] = useState(() => {
         const localToken = localStorage.getItem("token") || ""
+
+        if (!localToken) {
+            return ""
+        }
         return JSON.parse(localToken)
     })
+
+    if (!token) {
+        history.push("/")
+    }
 
     useEffect(() => {
         api.get("/profile", {
