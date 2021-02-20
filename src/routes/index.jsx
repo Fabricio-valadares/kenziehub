@@ -2,6 +2,7 @@ import { Switch, Route } from "react-router-dom"
 import Home from "../pages/Home"
 import Register from "../pages/Register"
 import Login from "../pages/Login"
+import NotFound from "../pages/NotFound"
 
 
 const Routes = () => {
@@ -15,6 +16,9 @@ const Routes = () => {
             </Route>
             <Route exact path="/home">
                 <Home />
+            </Route>
+            <Route>
+                <NotFound />
             </Route>
         </Switch>
     )
