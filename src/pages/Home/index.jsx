@@ -25,7 +25,7 @@ const Home = () => {
         return JSON.parse(localToken)
     })
 
-    if (!token) {
+    if (token === "") {
         history.push("/")
     }
 
