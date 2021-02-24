@@ -16,7 +16,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-const ModalCreate = ({ dataTecs, setTec, tec }) => {
+const ModalCreate = ({ dataTecs, newTecs, tec }) => {
   const classes = useStyles();
 
   const [status, setStatus] = useState();
@@ -58,8 +58,7 @@ const ModalCreate = ({ dataTecs, setTec, tec }) => {
         tec.forEach(
           (ele) => ele.id === dataTecs.id && (ele.status = `${data.status}`)
         );
-
-        setTec(tec);
+        newTecs();
 
         setTextSuccess(true);
       })
